@@ -1,0 +1,6 @@
+---
+- name: Управление состоянием и автозапуском службы
+  ansible.builtin.service:
+    name: "{{ lighttpd_service_name }}"
+    state: "{{ lighttpd_service_state }}"
+    enabled: "{{ lighttpd_service_enabled }}"

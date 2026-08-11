@@ -1,0 +1,12 @@
+---
+- name: Enable vars supporting current OS
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Installing Lighttpd
+  ansible.builtin.include_tasks: install.yml
+
+- name: Configere Lighttpd
+  ansible.builtin.include_tasks: configure.yml
+
+- name: restarting Lighttpd
+  ansible.builtin.include_tasks: service.yml
