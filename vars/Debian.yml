@@ -1,0 +1,4 @@
+---
+lighttpd_package_name: lighttpd
+lighttpd_service_name: lighttpd
+lighttpd_conf_path: /etc/lighttpd/lighttpd.conf

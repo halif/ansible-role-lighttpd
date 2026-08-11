@@ -1,0 +1,9 @@
+---
+lighttpd_port: 80
+lighttpd_document_root: "/var/www/html"
+lighttpd_service_state: started
+lighttpd_service_enabled: true
+
+lighttpd_modules:
+  - mod_access
+  - mod_alias
