@@ -1,7 +1,8 @@
 # Ansible Role: Lighttpd
 
-[![Ansible Galaxy](https://shields.io)](https://ansible.com)
-[![Platforms](https://shields.io)](https://ansible.com)
+[![Ansible Integration](https://img.shields.io/badge/ansible-2.12+-blue.svg)](https://docs.ansible.com/)
+[![Molecule Tested](https://img.shields.io/badge/molecule-tested-green.svg)](https://molecule.readthedocs.io/)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
 An Ansible role that installs, configures, and manages the **Lighttpd** web server on Debian/Ubuntu, RHEL/Rocky Linux, and OpenSUSE.
 
