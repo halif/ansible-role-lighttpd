@@ -1,0 +1,28 @@
+---
+galaxy_info:
+  author: halif
+  description: Ansible role to install, configure, and manage Lighttpd web server.
+  company: ""
+
+  license: MIT
+
+  min_ansible_version: "2.10"
+
+  galaxy_tags:
+    - web
+    - server
+    - lighttpd
+    - http
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+    - name: EL
+      versions:
+        - "9"
+    - name: opensuse
+      versions:
+        - "15"
+
+dependencies: []
