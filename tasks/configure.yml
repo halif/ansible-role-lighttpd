@@ -3,10 +3,9 @@
   ansible.builtin.file:
     path: "{{ lighttpd_document_root }}"
     state: directory
-    owner: www-data
-    group: www-data
+    owner: "{{ lighttpd_user }}"
+    group: "{{ lighttpd_group }}"
     mode: '0755'
-  ignore_errors: true # Игнорируем отсутствие пользователя www-data на RedHat (там обычно lighttpd)
 
 - name: Развертывание конфигурационного файла lighttpd.conf
   ansible.builtin.template:

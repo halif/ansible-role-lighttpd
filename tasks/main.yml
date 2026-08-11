@@ -1,12 +1,21 @@
 ---
-- name: Enable vars supporting current OS
+- name: Проверка совместимости операционной системы
+  ansible.builtin.assert:
+    that:
+      - ansible_os_family in ['Debian', 'RedHat', 'Suse']
+    fail_msg: >-
+      Дистрибутив {{ ansible_distribution }} (семейство {{ ansible_os_family }})
+      не поддерживается этой ролью.
+    quiet: true
+
+- name: Подключение переменных для текущего семейства ОС
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Installing Lighttpd
+- name: Установка Lighttpd
   ansible.builtin.include_tasks: install.yml
 
-- name: Configere Lighttpd
+- name: Настройка Lighttpd
   ansible.builtin.include_tasks: configure.yml
 
-- name: restarting Lighttpd
+- name: Перезапуск или управление службой Lighttpd
   ansible.builtin.include_tasks: service.yml

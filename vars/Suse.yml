@@ -2,6 +2,6 @@
 lighttpd_package_name: lighttpd
 lighttpd_service_name: lighttpd
 lighttpd_conf_path: /etc/lighttpd/lighttpd.conf
-lighttpd_user: www-data
-lighttpd_group: www-data
-lighttpd_document_root: /var/www/html
+lighttpd_user: lighttpd
+lighttpd_group: lighttpd
+lighttpd_document_root: /srv/www/htdocs

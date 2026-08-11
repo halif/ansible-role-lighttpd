@@ -1,4 +1,3 @@
----
 - name: Управление состоянием и автозапуском службы
   ansible.builtin.service:
     name: "{{ lighttpd_service_name }}"

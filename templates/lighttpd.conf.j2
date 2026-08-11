@@ -1,5 +1,5 @@
 server.modules = (
-{% for module in lighttpd_modules %}
+{% for module in lighttpd_modules | default([]) %}
     "{{ module }}",
 {% endfor %}
 )

@@ -1,0 +1,42 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: ubuntu2204
+    image: geerlingguy/docker-ubuntu2204-ansible:latest
+    command: /sbin/init
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
+
+  - name: rockylinux9
+    image: geerlingguy/docker-rockylinux9-ansible:latest
+    command: /usr/sbin/init
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
+
+  - name: opensuse15
+    image: opensuse15:local
+    dockerfile: Dockerfile.opensuse
+    command: /usr/lib/systemd/systemd
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
+
+provisioner:
+  name: ansible
+  inventory:
+    host_vars:
+      opensuse15:
+        ansible_python_interpreter: /usr/bin/python3.11
+
+verifier:
+  name: ansible
