@@ -2,5 +2,7 @@
 - name: Converge
   hosts: all
   become: true
-  roles:
-    - role: "."
+  tasks:
+    - name: "Include ansible-role-lighttpd"
+      include_role:
+        name: "{{ playbook_dir }}/../../"
