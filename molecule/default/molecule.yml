@@ -9,6 +9,7 @@ platforms:
     command: /sbin/init
     pre_build_image: true
     privileged: true
+    user: root
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
@@ -18,6 +19,7 @@ platforms:
     command: /usr/sbin/init
     pre_build_image: true
     privileged: true
+    user: root
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
