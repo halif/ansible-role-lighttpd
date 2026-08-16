@@ -1,11 +1,11 @@
 ---
-- name: Установка EPEL репозитория (для RedHat)
+- name: Install EPEL repo (for RedHat)
   ansible.builtin.package:
     name: "{{ lighttpd_epel_package }}"
     state: present
   when: ansible_os_family == 'RedHat'
 
-- name: Установка пакета Lighttpd
+- name: Install Lighttpd
   ansible.builtin.package:
     name: "{{ lighttpd_package_name }}"
     state: present

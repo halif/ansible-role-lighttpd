@@ -2,18 +2,18 @@
 # Сетевые параметры
 lighttpd_port: 80
 
-# Состояние и автозапуск службы
+# Service state and autostart configuration
 lighttpd_service_name: lighttpd
 lighttpd_service_state: started
 lighttpd_service_enabled: true
 
-# Пользователь, группа и каталог по умолчанию
+# default user, group and directory
 lighttpd_user: www-data
 lighttpd_group: www-data
 lighttpd_document_root: /var/www/html
 lighttpd_epel_package: epel-release
 
-# Подключаемые модули
+# enable modules
 lighttpd_modules:
   - mod_access
   - mod_alias

@@ -3,21 +3,21 @@
   hosts: all
   become: true
   tasks:
-    - name: Проверка открытия порта 80 (основной признак работы веб-сервера)
+    - name: Checking port 80 (main checking webserver)
       ansible.builtin.wait_for:
         port: 80
         host: 127.0.0.1
         timeout: 10
 
-    - name: Отправка тестового HTTP-запроса к веб-серверу
+    - name: Send test HTTP-query to webserver
       ansible.builtin.uri:
         url: "http://127.0.0.1:80/"
         method: GET
         status_code: [200, 403, 404]
       register: http_check
 
-    - name: Утверждение, что HTTP-сервер ответил
+    - name: Get resolv
       ansible.builtin.assert:
         that:
           - http_check.status in [200, 403, 404]
-        fail_msg: "Lighttpd не вернул валидный HTTP-ответ"
+        fail_msg: "Lighttpd do not resolve HTTP-helthcheck"

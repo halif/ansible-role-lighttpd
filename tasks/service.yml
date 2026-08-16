@@ -1,11 +1,11 @@
-- name: Управление состоянием и автозапуском службы через systemd
+- name: Manage service state and autostart via systemd
   ansible.builtin.service:
     name: "{{ lighttpd_service_name }}"
     state: "{{ lighttpd_service_state }}"
     enabled: "{{ lighttpd_service_enabled }}"
   ignore_errors: true
 
-- name: Принудительный запуск lighttpd для окружения Docker (без systemd)
+- name: Force start lighttpd for Docker environment (without systemd)
   ansible.builtin.shell: |
     if ! pgrep -x "lighttpd" > /dev/null; then
       lighttpd -f {{ lighttpd_conf_path }}
@@ -15,7 +15,7 @@
   changed_when: false
   when: ansible_virtualization_type in ['docker', 'podman', 'containerd'] or ansible_facts.services is not defined
 
-- name: Показать лог ошибок lighttpd при сбое запуска
+- name: Display lighttpd error log on startup failure
   ansible.builtin.shell: |
     if [ -f /var/log/lighttpd/error.log ]; then
       tail -n 20 /var/log/lighttpd/error.log
@@ -28,6 +28,6 @@
   changed_when: false
   failed_when: false
 
-- name: Вывод лога на экран
+- name: Print error log to stdout
   ansible.builtin.debug:
     msg: "{{ error_log.stdout_lines }}"

@@ -1,5 +1,5 @@
 ---
-- name: Создание корневой директории сайта
+- name: Create main directory
   ansible.builtin.file:
     path: "{{ lighttpd_document_root }}"
     state: directory
@@ -7,9 +7,9 @@
     group: "{{ lighttpd_group }}"
     mode: '0755'
 
-- name: Развертывание конфигурационного файла lighttpd.conf
+- name: Deploy config file lighttpd.conf
   ansible.builtin.template:
     src: lighttpd.conf.j2
     dest: "{{ lighttpd_conf_path }}"
     mode: '0644'
-  notify: Перезапуск lighttpd
+  notify: restart lighttpd

@@ -1,10 +1,10 @@
 ---
-- name: Перезапуск lighttpd
+- name: restart lighttpd
   ansible.builtin.service:
     name: "{{ lighttpd_service_name }}"
     state: restarted
 
-- name: Перезагрузка конфигурации lighttpd
+- name: restart configuration lighttpd
   ansible.builtin.service:
     name: "{{ lighttpd_service_name }}"
     state: reloaded
