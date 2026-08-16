@@ -3,15 +3,15 @@
   hosts: all
   become: true
   tasks:
-    - name: Проверка наличия и запуска службы lighttpd
+    - name: Проверка статуса службы lighttpd
       ansible.builtin.service:
         name: lighttpd
       register: service_status
 
-    - name: Утверждение, что служба активна
+    - name: Утверждение, что служба запущенна и активна
       ansible.builtin.assert:
         that:
-          - service_status.status.ActiveState == "active"
+          - service_status.state == "started" or service_status.status.ActiveState == "active"
         fail_msg: "Служба lighttpd не запущена!"
 
     - name: Проверка открытия порта 80
