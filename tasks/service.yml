@@ -14,3 +14,15 @@
   args:
     executable: /bin/bash
   changed_when: false
+
+- name: Показать лог ошибок lighttpd при сбое запуска
+  ansible.builtin.shell: |
+    cat /var/log/lighttpd/error.log || cat /var/log/messages | grep lighttpd
+  args:
+    executable: /bin/bash
+  register: error_log
+  failed_when: false
+
+- name: Вывод лога на экран
+  ansible.builtin.debug:
+    msg: "{{ error_log.stdout_lines }}"
