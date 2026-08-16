@@ -6,6 +6,8 @@ server.modules = (
 
 server.document-root        = "{{ lighttpd_document_root }}"
 server.port                 = {{ lighttpd_port }}
+server.username             = "{{ lighttpd_user }}"
+server.groupname            = "{{ lighttpd_group }}"
 server.errorlog             = "/var/log/lighttpd/error.log"
 index-file.names            = ( "index.html", "index.htm" )
 
