@@ -35,6 +35,9 @@ platforms:
 
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      remote_user: root
   inventory:
     host_vars:
       opensuse15:
