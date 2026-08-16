@@ -3,7 +3,7 @@ ENV container=docker
 
 RUN zypper --non-interactive modifyrepo --disable repo-backports-update repo-non-oss repo-update repo-update-non-oss || true && \
     zypper --non-interactive refresh && \
-    zypper --non-interactive install --no-recommends systemd systemd-sysvinit sudo python311 && \
+    zypper --non-interactive install --no-recommends systemd systemd-sysvinit sudo python311 procps && \
     zypper clean -a
 
 CMD ["/usr/lib/systemd/systemd"]
