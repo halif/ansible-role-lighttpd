@@ -1,12 +1,16 @@
-- name: Управление состоянием и автозапуском службы
+---
+- name: Управление состоянием и автозапуском службы через systemd
   ansible.builtin.service:
     name: "{{ lighttpd_service_name }}"
     state: "{{ lighttpd_service_state }}"
     enabled: "{{ lighttpd_service_enabled }}"
   ignore_errors: true
 
-- name: Принудительный старт lighttpd через daemon (для docker-контейнеров без полноценного systemd)
-  ansible.builtin.command: lighttpd -f {{ lighttpd_conf_path }}
+- name: Принудительный запуск lighttpd для окружения Docker (без systemd)
+  ansible.builtin.shell: |
+    if ! pgrep -x "lighttpd" > /dev/null; then
+      lighttpd -f {{ lighttpd_conf_path }}
+    fi
   args:
-    creates: /var/run/lighttpd.pid
-  ignore_errors: true
+    executable: /bin/bash
+  changed_when: false
