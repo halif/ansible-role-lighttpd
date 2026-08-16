@@ -1,5 +1,7 @@
 ---
 galaxy_info:
+  namespace: halif
+  role_name: lighttpd
   author: halif
   description: Ansible role to install, configure, and manage Lighttpd web server.
   company: ""
