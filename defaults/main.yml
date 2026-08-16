@@ -1,5 +1,5 @@
 ---
-# Сетевые параметры
+# Network param
 lighttpd_port: 80
 
 # Service state and autostart configuration
