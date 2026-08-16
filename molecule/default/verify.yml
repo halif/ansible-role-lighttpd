@@ -11,7 +11,9 @@
     - name: Утверждение, что служба запущенна и активна
       ansible.builtin.assert:
         that:
-          - service_status.state == "started" or service_status.status.ActiveState == "active"
+          - (service_status.state is defined and service_status.state == "started") or
+            (service_status.status is defined and service_status.status.ActiveState == "active") or
+            (service_status.status is defined and service_status.status.state == "running")
         fail_msg: "Служба lighttpd не запущена!"
 
     - name: Проверка открытия порта 80
