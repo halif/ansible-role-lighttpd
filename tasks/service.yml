@@ -13,6 +13,7 @@
   args:
     executable: /bin/bash
   changed_when: false
+  when: ansible_virtualization_type in ['docker', 'podman', 'containerd'] or ansible_facts.services is not defined
 
 - name: Показать лог ошибок lighttpd при сбое запуска
   ansible.builtin.shell: |
