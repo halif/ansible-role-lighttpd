@@ -1,4 +1,3 @@
----
 - name: Управление состоянием и автозапуском службы через systemd
   ansible.builtin.service:
     name: "{{ lighttpd_service_name }}"
@@ -17,10 +16,15 @@
 
 - name: Показать лог ошибок lighttpd при сбое запуска
   ansible.builtin.shell: |
-    cat /var/log/lighttpd/error.log || cat /var/log/messages | grep lighttpd
+    if [ -f /var/log/lighttpd/error.log ]; then
+      tail -n 20 /var/log/lighttpd/error.log
+    else
+      echo "Log file not found or empty"
+    fi
   args:
     executable: /bin/bash
   register: error_log
+  changed_when: false
   failed_when: false
 
 - name: Вывод лога на экран
